@@ -7,8 +7,8 @@
 | encrypted_password | string | null: false |
 | name	             | string	| null: false |
 | profile	           | text	  | null: false |
-|occupatio           |  text	| null: false |
-|position            |	text	| null: false |
+| occupation         |  text	| null: false |
+| position          |	text	| null: false |
 
 ### Association
 - has_many :prototypes
