@@ -1,4 +1,6 @@
 class PrototypesController < ApplicationController
+  before_action :set_prototype, only: [:show, :edit, :update]
+
   def index
     @prototypes = Prototype.all
   end
@@ -18,9 +20,29 @@ class PrototypesController < ApplicationController
     end
   end
 
+  def show
+    # @prototype は before_action により取得済み
+  end
+
+  def edit
+    # @prototype は before_action により取得済み
+  end
+
+  def update
+    if @prototype.update(prototype_params)
+      redirect_to prototype_path(@prototype)
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def prototype_params
     params.require(:prototype).permit(:title, :catch_copy, :concept, :image)
+  end
+
+  def set_prototype
+    @prototype = Prototype.find(params[:id])
   end
 end
