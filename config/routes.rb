@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -9,5 +10,12 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   root to: 'prototypes#index'
-   resources :prototypes, only: [:new, :create, :index, :show, :edit, :update, :destroy]
+
+  # resources :prototypes ← 以前の記述（参考用に残す場合はそのまま）
+  resources :prototypes, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
+    resources :comments, only: :create
+  end
+
+  resources :users, only: [:show]
+
 end
