@@ -20,7 +20,9 @@ class PrototypesController < ApplicationController
   end
 
   def show
-    # @prototype は before_action により取得済み
+    @prototype = Prototype.find(params[:id])
+    @comment = Comment.new
+    @comments = @prototype.comments.includes(:user)
   end
 
   def edit
